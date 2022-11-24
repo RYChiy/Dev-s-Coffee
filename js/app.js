@@ -294,6 +294,27 @@ function readFiles(files) {
     target.appendChild(item);
   };
 }
+
+async function writeFile() {
+  if (!window.chooseFileSystemEntries) {
+    alert('Native File System API not supported');
+    return;
+  }
+  
+  const target = document.getElementById('target');
+  target.innerHTML = 'Opening file handle...';
+  
+  const handle = await window.chooseFileSystemEntries({
+    type: 'save-file',
+  });
+  
+  const file = await handle.getFile()
+  const writer = await handle.createWriter();
+  await writer.write(0, 'Hello world from What Web Can Do!');
+  await writer.close()
+  
+  target.innerHTML = 'Test content written to ' + file.name + '.';
+}
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker

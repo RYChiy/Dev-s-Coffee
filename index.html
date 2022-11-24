@@ -65,8 +65,26 @@
           <img src="./images/nomi2.jpg" id="imgLogo">
         </div>
         
-        <p><small>Demo from <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank" rel="noopener">HTML5 Rocks</a> article.</small></p>
-   
+   <h1>Offline Storage</h1>
+        <p>
+          <label>Engine</label>
+        </p>
+        <div role="group" id="selectEngine">
+          <input type="radio" name="engine" value="localStorage" checked/> Persistent Storage
+          <input type="radio" name="engine" value="sessionStorage"/> Per-Session Storage
+        </div>
+        
+        <p>
+          <label for="value">Value for <code>myKey</code></label>
+          <input type="text" id="value">
+        </p>
+
+        <h1>Contacts</h1>
+        <p>
+          <button onclick="readContacts()">Read Contacts</button>
+        </p>
+        
+        <pre id="log"></pre>
     </main>
     <script src="js/app.js"></script>
   </body>

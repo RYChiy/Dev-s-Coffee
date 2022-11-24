@@ -152,7 +152,120 @@ function deviceOrientationHandler(eventData) {
   logo.style.transform =
     "rotate(" + tiltLR + "deg) rotate3d(1,0,0, " + tiltFB * -1 + "deg)";
 }
+if ("localStorage" in window || "sessionStorage" in window) {
+  var selectedEngine;
 
+  var logTarget = document.getElementById("target");
+  var valueInput = document.getElementById("value");
+
+  var reloadInputValue = function () {
+    console.log(selectedEngine, window[selectedEngine].getItem("myKey"));
+    valueInput.value = window[selectedEngine].getItem("myKey") || "";
+  };
+
+  var selectEngine = function (engine) {
+    selectedEngine = engine;
+    reloadInputValue();
+  };
+
+  function handleChange(change) {
+    var timeBadge = new Date().toTimeString().split(" ")[0];
+    var newState = document.createElement("p");
+    newState.innerHTML = "" + timeBadge + " " + change + ".";
+    logTarget.appendChild(newState);
+  }
+
+  var radios = document.querySelectorAll("#selectEngine input");
+  for (var i = 0; i < radios.length; ++i) {
+    radios[i].addEventListener("change", function () {
+      selectEngine(this.value);
+    });
+  }
+
+  selectEngine("localStorage");
+
+  valueInput.addEventListener("keyup", function () {
+    window[selectedEngine].setItem("myKey", this.value);
+  });
+
+  var onStorageChanged = function (change) {
+    var engine =
+      change.storageArea === window.localStorage
+        ? "localStorage"
+        : "sessionStorage";
+    handleChange(
+      "External change in " +
+        engine +
+        ": key " +
+        change.key +
+        " changed from " +
+        change.oldValue +
+        " to " +
+        change.newValue +
+        ""
+    );
+    if (engine === selectedEngine) {
+      reloadInputValue();
+    }
+  };
+
+  window.addEventListener("storage", onStorageChanged);
+}
+
+function readContacts() {
+  var api = navigator.contacts || navigator.mozContacts;
+
+  if (api && !!api.select) {
+    // new Chrome API
+    api
+      .select(["name", "email"], { multiple: true })
+      .then(function (contacts) {
+        consoleLog("Found " + contacts.length + " contacts.");
+        if (contacts.length) {
+          consoleLog(
+            "First contact: " +
+              contacts[0].name +
+              " (" +
+              contacts[0].email +
+              ")"
+          );
+        }
+      })
+      .catch(function (err) {
+        consoleLog("Fetching contacts failed: " + err.name);
+      });
+  } else if (api && !!api.find) {
+    // old Firefox OS API
+    var criteria = {
+      sortBy: "familyName",
+      sortOrder: "ascending",
+    };
+
+    api
+      .find(criteria)
+      .then(function (contacts) {
+        consoleLog("Found " + contacts.length + " contacts.");
+        if (contacts.length) {
+          consoleLog(
+            "First contact: " +
+              contacts[0].givenName[0] +
+              " " +
+              contacts[0].familyName[0]
+          );
+        }
+      })
+      .catch(function (err) {
+        consoleLog("Fetching contacts failed: " + err.name);
+      });
+  } else {
+    consoleLog("Contacts API not supported.");
+  }
+}
+
+function consoleLog(data) {
+  var logElement = document.getElementById("log");
+  logElement.innerHTML += data + "\n";
+}
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker

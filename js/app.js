@@ -1,7 +1,8 @@
-var $status2 = document.getElementById('status');
+
+var $status = document.getElementById('status');
 
 if ('Notification' in window) {
-  $status2.innerText = Notification.permission;
+  $status.innerText = Notification.permission;
 }
 
 function requestPermission() {
@@ -11,7 +12,7 @@ function requestPermission() {
   }
   
   Notification.requestPermission(function (result) {
-    $status2.innerText = result;
+    $status.innerText = result;
   });
 }
 
@@ -111,11 +112,3 @@ if ('permissions' in navigator) {
 }
 //Service Worker
 //
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker
-      .register("/serviceWorker.js")
-      .then(res => console.log("service worker registered"))
-      .catch(err => console.log("service worker not registered", err));
-  });
-}

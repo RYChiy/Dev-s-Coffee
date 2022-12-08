@@ -43,7 +43,7 @@ function persistentNotification() {
     alert('Notification API error: ' + err);
   }
 }
-Permission
+
 if ('permissions' in navigator) {
   var logTarget = document.getElementById('logTarget');
 

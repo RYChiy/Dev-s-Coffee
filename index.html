@@ -29,22 +29,9 @@
           <li>Blog</li>
         </ul>
       </nav>
-      <div class="columns">
-        <div class="column">
-          <p><button type="button" onclick="getStream('video')">Grab video</button></p>
-          
-          <video controls autoplay style="height:180px; width: 240px;"></video>
-        </div>
-        <div class="column">
-          <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
-          
-          <audio controls></audio>
-        </div>
-      </div>
-      <button id="askButton">Ask for location</button>
-<div id="target"></div>
+     
       
-      <p>Current permission status is <b id="status">unavailable</b>.</p>
+<p>Current permission status is <b id="status">unavailable</b>.</p>
 
 <p><button onclick="requestPermission()">Request permission</button></p>
 <p><button onclick="nonPersistentNotification()">Non-persistent notification</button></p>

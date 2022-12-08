@@ -104,7 +104,6 @@ function persistentNotification() {
     alert('Notification API error: ' + err);
   }
 
-
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker

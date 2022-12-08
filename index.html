@@ -1,42 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="manifest.json">
-    <!-- ios support -->
-    <link rel="apple-touch-icon" href="images/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-96x96.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-128x128.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-144x144.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-384x384.png">
-    <link rel="apple-touch-icon" href="images/icons/icon-512x512.png">
-    <meta name="apple-mobile-web-app-status-bar" content="#db4938">
-    <meta name="theme-color" content="#db4938">
-    <title>Dev'Coffee PWA</title>
+    
   </head>
   <body>
     <main>
       <nav>
-        <h1>Dev'Coffee</h1>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Blog</li>
-        </ul>
+        <!-- <h1>Picture</h1>
+        <div class="columns">
+          <div class="column">
+            <p><button type="button" onclick="getStream('video')">Grab video</button></p>
+            
+            <video controls autoplay style="height:180px; width: 240px;"></video>
+          </div>
+          <div class="column">
+            <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
+            
+            <audio controls></audio>
+          </div>
+        </div>
+        <h1> Video mit Audio </h1>
+        <video autoplay style="height:180px; width: 240px;" poster="https://image.freepik.com/free-icon/video-camera-symbol_318-40225.png"></video>
+        <p><button onclick="getStream()">Grab video & start recording</button></p>
+        <p><button onclick="download()">Download!</button></p>
+          
+        <p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank" rel="noopener">Miguel Casas-Sanchez</a>.</small></p> -->
+        <!-- <h1> Location </h1>
+        <button id="askButton">Ask for location</button>
+        <div id="target"></div>
+        <h1> Position </h1>
+        <table>
+          <tr>
+            <td>Tilt Left/Right [gamma]</td>
+            <td id="doTiltLR"></td>
+          </tr>
+          <tr>
+            <td>Tilt Front/Back [beta]</td>
+            <td id="doTiltFB"></td>
+          </tr>
+          <tr>
+            <td>Direction [alpha]</td>
+            <td id="doDirection"></td>
+          </tr>
+        </table>
+        <div id="logoContainer">
+          <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_512.png" id="imgLogo">
+        </div>
+        <p><small>Demo from <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank" rel="noopener">HTML5 Rocks</a> article.</small></p> -->
+        <!-- <h1> Contacts</h1>
+        <p>
+          <button onclick="readContacts()">Read Contacts</button>
+        </p>
+        <pre id="log"></pre>
+        <h1>Offline Storage</h1>
+        <p>
+          <label>Engine</label>
+        </p>
+        <div role="group" id="selectEngine">
+          <input type="radio" name="engine" value="localStorage" checked/> Persistent Storage
+          <input type="radio" name="engine" value="sessionStorage"/> Per-Session Storage
+        </div>
+        
+        <p>
+          <label for="value">Value for <code>myKey</code></label>
+          <input type="text" id="value">
+        </p>
+        <h1>File</h1>
+        <div class="columns">
+          <div class="column">
+            <button class="btn-file">
+              Choose some files to read<br>(File API) <input type="file" onchange="readFiles(this.files)" multiple>
+            </button>
+            
+            <p>Number of selected files: <b id="count">N/A</b></p>
+          </div>
+          <div class="column">
+            <button class="btn-file" onclick="writeFile()">
+              Choose file to create or overwrite<br>(Native File System API)
+            </button>
+          </div>
+        </div>
+        <ul id="target"></ul>
+        <h1>Storage Quotas</h1>
+        <p>Estimated storage usage is <b id="usage">unknown</b> bytes.</p>
+        <p>Estimated storage quota is <b id="quota">unknown</b> bytes.</p>
+        <p>Estimated usage is <b id="percent">unknown</b>%.</p>
+        <p>Persistent storage status is <b id="persisted">unknown</b>.</p>
+        <p><button onclick="requestPersistence()">Request persistent storage</button></p> -->
+        <h1> Local Notifications </h1>
+        <p>Current permission status is <b id="status">unavailable</b>.</p>
+        <p><button onclick="requestPermission()">Request permission</button></p>
+        <p><button onclick="nonPersistentNotification()">Non-persistent notification</button></p>
+        <p><button onclick="persistentNotification()">Persistent notification</button></p>
+        <h1> Permission </h1>
+        <div>
+          <p>
+            <b><a href="/geolocation.html">Geolocation</a></b> permission status is <b id="geolocation-status">unknown</b>.
+            
+            <button onclick="requestGeolocation()">Request</button>
+          </p>
+          <p>
+            <b><a href="/local-notifications.html">Notifications</a></b> permission status is <b id="notifications-status">unknown</b>.
+            
+            <button onclick="requestNotifications()">Request</button>
+          </p>
+          <p>
+            <b><a href="/push-notifications.html">Push</a></b> permission status is <b id="push-status">unknown</b>.
+            
+            <button onclick="requestPush()">Request</button>
+          </p>
+          <p>
+            <b>Midi</b> permission status is <b id="midi-status">unknown</b>.
+            
+            <button onclick="requestMidi()">Request</button>
+          </p>
+          <p>
+            <b><a href="/camera-microphone.html">Camera</a></b> permission status is <b id="camera-status">unknown</b>.
+            
+            <button onclick="requestCamera()">Request</button>
+          </p>
+          <p>
+            <b><a href="/camera-microphone.html">Microphone</a></b> permission status is <b id="microphone-status">unknown</b>.
+            
+            <button onclick="requestMicrophone()">Request</button>
+          </p>
+          <p>
+            <b><a href="/background-sync.html">Background Sync</a></b> permission status is <b id="background-sync-status">unknown</b>.
+          </p>
+          <p>
+            <b><a href="/ambient-light.html">Ambient Light Sensor</a></b> permission status is <b id="ambient-light-sensor-status">unknown</b>.
+          </p>
+          <p>
+            <b><a href="/device-motion.html">Accelerometer</a></b> permission status is <b id="accelerometer-status">unknown</b>.
+          </p>
+          <p>
+            <b><a href="/device-motion.html">Gyroscope</a></b> permission status is <b id="gyroscope-status">unknown</b>.
+          </p>
+          <p>
+            <b><a href="/device-motion.html">Magnetometer</a></b> permission status is <b id="magnetometer-status">unknown</b>.
+          </p>
+        </div>
+        <p id="logTarget"></p>
       </nav>
-     
-      
-<p>Current permission status is <b id="status">unavailable</b>.</p>
-
-<p><button onclick="requestPermission()">Request permission</button></p>
-<p><button onclick="nonPersistentNotification()">Non-persistent notification</button></p>
-<p><button onclick="persistentNotification()">Persistent notification</button></p>
-      
     </main>
     <script src="js/app.js"></script>
   </body>

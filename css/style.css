@@ -1,84 +1,59 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+#video {
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width: 320px;
+  height: 240px;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
 }
 
-body {
-  background: #fdfdfd;
-  font-family: "Nunito", sans-serif;
-  font-size: 1rem;
+#photo {
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+  width: 320px;
+  height: 240px;
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
 }
 
-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 0.5rem;
-  text-align: center;
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#canvas {
+  display: none;
 }
 
-ul {
-  list-style: none;
-  display: flex;
+.camera {
+  width: 340px;
+  display: inline-block;
 }
 
-li {
-  margin-right: 1rem;
+.output {
+  width: 340px;
+  display: inline-block;
+  vertical-align: top;
 }
 
-h1 {
-  color: #e74c3c;
-  margin-bottom: 0.5rem;
-}
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  grid-gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  padding: 1rem 0;
-}
-.card {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 15rem auto;
-  height: 15rem;
-  background: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 10px;
-  margin: auto;
-  overflow: hidden;
+#startbutton {
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 32px;
+  background-color: rgba(255, 30, 251, 0.996);
+  border-radius: 40%;
+  border: 0px solid rgb(255, 50, 234);
+  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  color: rgba(255, 255, 255, 1);
 }
 
-.card--avatar {
-  width: 100%;
-  height: 10rem;
-  object-fit: cover;
+.contentarea {
+  font-size: 16px;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  width: 760px;
 }
 
-.card--title {
-  color: #222;
-  font-weight: 700;
-  text-transform: capitalize;
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-}
-
-.card--link {
-  text-decoration: none;
-  background: #db4938;
-  color: #fff;
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
 .container {
   perspective: 300;
   -webkit-perspective: 300;
@@ -93,19 +68,19 @@ h1 {
 }
 
 .btn-file {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
 }
 .btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    opacity: 0;
-    outline: none;
-    background: #fff;
-    cursor: inherit;
-    display: block;
-    }
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+  outline: none;
+  background: #fff;
+  cursor: inherit;
+  display: block;
+}
